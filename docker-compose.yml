@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  ib-dashboard:
+    build: .
+    container_name: ib_vacancy_dashboard
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount directory with vacancies.db (built by init_db.py)
+      - ./data:/data
+    environment:
+      - DB_PATH=/data/vacancies.db
+      - PORT=5000
+    restart: unless-stopped
